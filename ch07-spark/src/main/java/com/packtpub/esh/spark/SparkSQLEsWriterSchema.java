@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by vishalshukla on 22/08/15.
@@ -59,7 +60,7 @@ public class SparkSQLEsWriterSchema {
         JavaRDD<Row> rowRDD = textFile.map(line -> {
                         CSVParser parser = CSVParser.parse(line, CSVFormat.RFC4180);
                         CSVRecord record = parser.getRecords().get(0);
-                        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy hh:mm");
+                        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy hh:mm",Locale.ENGLISH);
                         Date eventDate = format.parse(record.get(2));
 
                         Row geo = RowFactory.create(StringUtils.isEmpty(record.get(10)) ? null : Double.parseDouble(record.get(10)),

@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
+import java.util.Locale;
 
 /**
  * Created by vishalshukla on 16/08/15.
@@ -44,7 +45,7 @@ public class Crime implements Serializable {
     }
 
     public void setEventDate(String eventDate) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy hh:mm");
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy hh:mm",Locale.ENGLISH);
         Date date = format.parse(eventDate);
         this.eventDate = date.getTime();
     }

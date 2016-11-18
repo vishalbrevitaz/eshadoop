@@ -8,6 +8,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Tweets2HdfsMapper extends Mapper<Object, MapWritable, Text, Text> {
 
@@ -25,7 +26,7 @@ public class Tweets2HdfsMapper extends Mapper<Object, MapWritable, Text, Text> {
 
     private String getQuotedTimeValue(Writable writable) {
         Date timestamp = new Date(Long.parseLong(writable.toString()));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss zzz YYYY");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss zzz YYYY",Locale.ENGLISH);
         return "\""+dateFormat.format(timestamp)+"\"";
     }
 
