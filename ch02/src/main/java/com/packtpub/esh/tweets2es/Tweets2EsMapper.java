@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Locale;
 
 public class Tweets2EsMapper extends Mapper<Object, Text, Text, MapWritable> {
 
@@ -39,7 +40,7 @@ public class Tweets2EsMapper extends Mapper<Object, Text, Text, MapWritable> {
                     break;
                 case 2:
                     String timeStr = token.replaceAll("\"", "");
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss zzz YYYY");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss zzz YYYY",Locale.ENGLISH);
                     try {
                         timestamp = dateFormat.parse(timeStr).getTime();
                     } catch (ParseException e) {

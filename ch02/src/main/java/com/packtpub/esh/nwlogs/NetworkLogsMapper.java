@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.StringTokenizer;
+import java.util.Locale;
 
 public class NetworkLogsMapper extends Mapper<Object, Text, Text, MapWritable> {
 
@@ -76,7 +77,7 @@ public class NetworkLogsMapper extends Mapper<Object, Text, Text, MapWritable> {
                     case "time":
                         String timeStr = valuePart;
                         timeStr = timeStr.replaceAll("\\)", "");
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss yyyy");
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd hh:mm:ss yyyy",Locale.ENGLISH);
                         try {
                             time = dateFormat.parse(timeStr).getTime();
                         } catch (ParseException e) {
